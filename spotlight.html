@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>光源和材质 </title>
+    <script src="jquery.js"> </script>
+    <script src="three.js"></script>
+    <style>
+    
+    body{
+        overflow: hidden;
+    }
+    </style>
+</head>
+
+<body>
+<script > 
+$(function(){
+  //three
+  var scene=new THREE.Scene();
+  var camera=new THREE.PerspectiveCamera(
+  //  角度 ，绘制区域，近距点，远距点
+  45,window.innerWidth/window.innerHeight,0.1,100
+  );
+  //渲染器
+  var renderer=new THREE.WebGLRenderer();
+   //背景色
+   var clearColor=new THREE.Color(0xEEEEEE);
+   renderer.setClearColor(clearColor);
+   renderer.setSize(window.innerWidth,window.innerHeight);
+   //启动阴影效果
+   renderer.shadowMapEnabled=true;
+   var planeGeometry=new THREE.PlaneGeometry(60,20);
+   //创建对光源有反射效果的材质
+   var material=new THREE.MeshLambertMaterial();
+   var plane=new THREE.Mesh(planeGeometry,material);
+   plane.receiveShadow=true;
+   plane.rotation.x=-.5*Math.PI;
+   plane.position.x=14;
+   plane.position.y=0;
+   plane.position.z=0;
+   scene.add(plane);
+   //cube  MeshLambertMaterial
+   var cubeGe=new THREE.BoxGeometry(4,4,4);
+   var cubema=new THREE.MeshLambertMaterial({
+       color:0xff0000
+   });
+   var cube=new THREE.Mesh(cubeGe,cubema);
+   cube.castShadow=true;
+   cube.position.x=-.4;
+   cube.position.y=3;
+   cube.position.z=0;
+   scene.add(cube);
+   //球体
+   var sphereGe=new THREE.SphereGeometry(4,4,4);
+   var spherema=new THREE.MeshLambertMaterial({
+       color:0xff0000
+   });
+   var sphere=new THREE.Mesh(sphereGe,spherema);
+   sphere.castShadow=true;
+   sphere.position.x=-30;
+   sphere.position.y=40;
+   sphere.position.z=50;
+   scene.add(sphere);
+   camera.position.x=-30;
+   camera.position.y=40;
+   camera.position.z=30;
+camera.lookAt(scene.position);
+//创建光源
+var spotLight=new THREE.SpotLight(0xffffff);
+spotLight.position.set(-40,60,10);
+spotLight.castShadow=true;
+scene.add(spotLight);
+document.body.appendChild(renderer.domElement);
+renderer.render(scene,camera);
+
+
+
+
+  
+
+
+
+
+});
+        
+        </script>
+</body>
+
+
+</html>
