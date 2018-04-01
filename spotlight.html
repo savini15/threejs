@@ -53,15 +53,15 @@ $(function(){
    cube.position.z=0;
    scene.add(cube);
    //球体
-   var sphereGe=new THREE.SphereGeometry(4,4,4);
+   var sphereGe=new THREE.SphereGeometry(4,20,20);
    var spherema=new THREE.MeshLambertMaterial({
-       color:0xff0000
+       color:0x7777ff
    });
    var sphere=new THREE.Mesh(sphereGe,spherema);
    sphere.castShadow=true;
-   sphere.position.x=-30;
-   sphere.position.y=40;
-   sphere.position.z=50;
+   sphere.position.x=20;
+   sphere.position.y=3;
+   sphere.position.z=2;
    scene.add(sphere);
    camera.position.x=-30;
    camera.position.y=40;
